@@ -1,0 +1,7 @@
+<template>
+    <div class="view">
+        <input class="toggle" type="checkbox" checked={todoCompleted} onclick={toggleTodo} data-testid="todo-item-toggle">
+        <label data-testid="todo-item-label">{todoName}</label>
+        <button class="destroy" data-testid="todo-item-button" onclick={removeTodo}>x</button>
+    </div>
+</template>

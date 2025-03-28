@@ -18,6 +18,7 @@
   "author": "",
   "license": "MIT",
   "workspaces": [
+    "playground",
     "example",
     "packages/@lwc/test-runner",
     "packages/@lwc/wds-core",

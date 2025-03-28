@@ -1,0 +1,48 @@
+<template>
+    <h1>Todos for {router.value.currentRoute}</h1>
+    <section>
+        <dl>
+            <dt>Status</dt>
+            <dd>{recordSM.value.status}</dd>
+          
+            <dt>Fields</dt>
+            <dd>
+                <ul>
+                    <template for:each={recordFields} for:item="record">
+                        <li key={record.key} class="todo-item">
+                            {record.key}: {record.value}
+                        </li>
+                    </template>
+                </ul>
+            </dd>
+        </dl>
+    </section>
+    <dl>
+        <dt>Status</dt>
+        <dd>{recordHomeSME.value.status}</dd>
+
+        <dt>RH record</dt>
+        <dd>{rhRecord}</dd>
+        <dt>RH Layout</dt>
+        <dd>{rhLayout}</dd>
+    </dl>
+    <input class="new-todo" type="text" placeholder="What needs to be done?" value="" onkeyup={saveTodo}>
+    <main>
+        <ul class="todo-list">
+            <template for:each={todos} for:item="todo">
+                <li key={todo.id} class="todo-item">
+                    <x-todos-item onremove={removeTodo} ontoggle={toggleTodo} todo-id={todo.id} todo-name={todo.name} todo-completed={todo.completed}></x-todos-item>
+                </li>
+            </template>
+        </ul>
+    </main>
+    <footer class="footer" data-testid="footer">
+        <span class="todo-count">{activeLeft} items left!</span>
+        <ul class="filters" data-testid="footer-navigation">
+            <li><a href="#/" data-value="all" onclick={selectFilter}>All</a></li>
+            <li><a href="#/active" data-value="active" onclick={selectFilter}>Active</a></li>
+            <li><a href="#/completed" data-value="completed" onclick={selectFilter}>Completed</a></li>
+        </ul>
+        <button class="clear-completed" onclick={state.value.clearCompleted}>Clear completed</button>
+    </footer>
+</template>
