@@ -12,8 +12,8 @@
         </template>
         <template if:false={hasData}>
             <div class="no-data">
-                <pre>Layout status: {layout.status}</pre>
-                <pre>RecordLayoutInfo status: {record.status}</pre>
+                <pre>Layout status: {layout.value.status}</pre>
+                <pre>RecordLayoutInfo status: {record.value.status}</pre>
                 
                 No layout or field data available
             </div>

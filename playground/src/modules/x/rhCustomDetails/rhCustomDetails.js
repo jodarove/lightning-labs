@@ -4,11 +4,11 @@ export default class RhCustomDetails extends LightningElement {
     @api record;
 
     get hasRecord() {
-        return this.record.record !== undefined;
+        return this.record.value.record !== undefined;
     }
 
     get customFields() {
-        return JSON.stringify(this.record.record, null, 2);
+        return JSON.stringify(this.record.value.record, null, 2);
     }
 
 } 

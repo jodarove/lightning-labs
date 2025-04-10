@@ -5,14 +5,14 @@ export default class RhDetails extends LightningElement {
     @api record;
 
     get hasData() {
-        return this.layout.status === 'loaded' && this.record.status === 'loaded';
+        return this.layout.value.status === 'loaded' && this.record.value.status === 'loaded';
     }
 
     get rhLayout() {
-        return JSON.stringify(this.layout.layout, null, 2);
+        return JSON.stringify(this.layout.value.layout, null, 2);
     }
 
     get rhLayoutFields() {
-        return JSON.stringify(this.record.record, null, 2);
+        return JSON.stringify(this.record.value.record, null, 2);
     }
 } 

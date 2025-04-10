@@ -4,11 +4,11 @@ export default class RhHighlights extends LightningElement {
     @api record;
 
     get hasRecord() {
-        return this.record.status === 'loaded';
+        return this.record.value.status === 'loaded';
     }
 
     get recordData() {
-        return this.record.record;
+        return this.record.value.record;
     }
 
 } 

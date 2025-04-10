@@ -12,15 +12,24 @@ export default class RhPageApp extends ContextfulLightningElement {
         return this.pageState.value.getStates().routingState;
     }
 
-    // get pageRecordState() {
-    //     return this.pageState.value.getState().pageRecord;
-    // }
+    get pageRecordState() {
+        if (!this.pageState.value) {
+            return undefined;
+        }
+        return this.pageState.value.getStates().pageRecord;
+    }
 
-    // get pageLayoutState() {
-    //     return this.pageState.value.getState().pageLayout;
-    // }
+    get pageLayoutState() {
+        if (!this.pageState.value) {
+            return undefined;
+        }
+        return this.pageState.value.getStates().pageLayout;
+    }
 
-    // get pageLayoutFieldsState() {
-    //     return this.pageState.value.getState().pageLayoutFields;
-    // }
+    get pageLayoutFieldsState() {
+        if (!this.pageState.value) {
+            return undefined;
+        }
+        return this.pageState.value.getStates().pageLayoutFields;
+    }
 }
