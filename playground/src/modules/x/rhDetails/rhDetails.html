@@ -1,0 +1,22 @@
+<template>
+    <div class="details-container">
+        <template if:true={hasData}>
+            <div class="details-section">
+                <h3>Field data sections</h3>
+                <pre>{rhLayoutFields}</pre>
+            </div>
+            <div class="details-section">
+                <h3>Layout Sections</h3>
+                <pre>{rhLayout}</pre>
+            </div>
+        </template>
+        <template if:false={hasData}>
+            <div class="no-data">
+                <pre>Layout status: {layout.status}</pre>
+                <pre>RecordLayoutInfo status: {record.status}</pre>
+                
+                No layout or field data available
+            </div>
+        </template>
+    </div>
+</template> 

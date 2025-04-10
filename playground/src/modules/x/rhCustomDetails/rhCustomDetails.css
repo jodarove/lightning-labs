@@ -1,0 +1,91 @@
+.custom-details-container {
+    padding: 1rem;
+    background-color: var(--sl-color-neutral-0);
+    border-radius: var(--sl-border-radius-medium);
+    box-shadow: var(--sl-shadow-small);
+}
+
+.custom-details-section {
+    margin-bottom: 1.5rem;
+}
+
+.custom-details-section:last-child {
+    margin-bottom: 0;
+}
+
+h3 {
+    color: var(--sl-color-neutral-900);
+    font-size: var(--sl-font-size-medium);
+    font-weight: var(--sl-font-weight-semibold);
+    margin: 0 0 1rem 0;
+}
+
+.custom-fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
+.custom-field {
+    padding: 0.75rem;
+    background-color: var(--sl-color-neutral-50);
+    border-radius: var(--sl-border-radius-medium);
+    border-left: 4px solid var(--sl-color-primary-500);
+}
+
+.field-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.field-label {
+    color: var(--sl-color-neutral-900);
+    font-weight: var(--sl-font-weight-medium);
+}
+
+.field-type {
+    color: var(--sl-color-neutral-600);
+    font-size: var(--sl-font-size-small);
+    background-color: var(--sl-color-neutral-200);
+    padding: 0.125rem 0.375rem;
+    border-radius: var(--sl-border-radius-small);
+}
+
+.field-value {
+    color: var(--sl-color-neutral-800);
+    word-break: break-word;
+}
+
+.metadata-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.metadata-item {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem;
+    background-color: var(--sl-color-neutral-50);
+    border-radius: var(--sl-border-radius-medium);
+}
+
+.metadata-label {
+    color: var(--sl-color-neutral-700);
+    font-size: var(--sl-font-size-small);
+    margin-bottom: 0.25rem;
+}
+
+.metadata-value {
+    color: var(--sl-color-neutral-900);
+    font-weight: var(--sl-font-weight-medium);
+}
+
+.no-record {
+    color: var(--sl-color-neutral-600);
+    font-style: italic;
+    text-align: center;
+    padding: 1rem;
+} 

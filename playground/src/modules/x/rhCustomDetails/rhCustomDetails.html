@@ -1,0 +1,18 @@
+<template>
+    <div class="custom-details-container">
+        <template if:true={hasRecord}>
+            <div class="custom-details-section">
+                <h3>Custom Record Details</h3>
+                <div class="custom-fields">
+                    <pre>{customFields}</pre>
+                </div>
+            </div>
+        </template>
+        <template if:false={hasRecord}>
+            <div class="no-record">
+                <pre>RecordInfo status: {record.status}</pre>
+                No record data available
+            </div>
+        </template>
+    </div>
+</template> 
