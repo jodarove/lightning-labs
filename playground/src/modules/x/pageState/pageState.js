@@ -31,13 +31,37 @@ function edge(signals, concequence) {
     concequence();
 }
 
+function effect(signals, fn) {
+    let scheduled = false;
+
+    function onChange() {
+        if (scheduled) {
+            return;
+        }
+        scheduled = true;
+        queueMicrotask(() => {
+            try {
+                fn();
+            } finally {
+                scheduled = false;
+            }
+        })
+    }
+
+    for (const signal of signals) {
+        signal.subscribe(onChange);
+    }
+
+    onChange();
+}
+
 export default defineState((atom, computed, update, fromContext, setAtom) => {
     const routingState = createRoutingSM();
     const pageRecord = createRecordSM();
     const pageLayout = createLayoutSM();
     const pageLayoutFields = createRecordSM();
 
-    edge([routingState], () => {
+    effect([routingState], () => {
         pageRecord.value.setConfig({
             objectApiName: routingState.value.objectApiName,
             recordId: routingState.value.recordId,
@@ -45,14 +69,14 @@ export default defineState((atom, computed, update, fromContext, setAtom) => {
         });
     });
 
-    edge([routingState, pageRecord], () => {
+    effect([routingState, pageRecord], () => {
         pageLayout.value.setConfig({
             objectApiName: routingState.value.objectApiName,
             recordTypeId: pageRecord.value.record?.recordTypeId,
         });
     });
 
-    edge([routingState,pageLayout], () => {
+    effect([routingState,pageLayout], () => {
         let fields = undefined;
         if (pageLayout.value.status === 'loaded' && pageLayout.value.layout) {
             fields = computeFieldsFromLayout(pageLayout.value.layout);

@@ -85,8 +85,12 @@ const layout = defineState((atom, computed, update, fromContext, setAtom) => {
                 if (inflight) {
                     clearTimeout(inflight);
                 }
+
+                console.warn("Loading layout for", { objectApiName, recordTypeId });
+
                 // it takes .5 seconds to load a record
                 inflight = setTimeout(() => {
+                    console.warn("Loaded layout for", { objectApiName, recordTypeId });
                     inflight = undefined;
                     setAtom(status, 'loaded'); // data ? 'loaded' : 'error';
                     setAtom(error, undefined); // = error_?.message;

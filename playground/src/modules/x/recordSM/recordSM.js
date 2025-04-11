@@ -19,8 +19,11 @@ const recordSM = defineState((atom, computed, update, fromContext, setAtom) => {
                 if (inflight) {
                     clearTimeout(inflight);
                 }
+
+                console.warn("Loading record for", { objectApiName, recordId, fields });
                 // it takes .5 seconds to load a record
                 inflight = setTimeout(() => {
+                    console.warn("Loaded record for", { objectApiName, recordId, fields });
                     inflight = undefined;
                     setAtom(status, 'loaded'); // data ? 'loaded' : 'error';
                     setAtom(error, undefined); // = error_?.message;
