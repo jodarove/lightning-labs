@@ -98,8 +98,6 @@ const layout = defineState((atom, computed, update, fromContext, setAtom) => {
                 }, 2000);
             }
         }
-
-        // pepe
         
         if (objectApiName || recordTypeId) {
             setConfig(objectApiName, recordTypeId);

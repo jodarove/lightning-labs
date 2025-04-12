@@ -31,6 +31,9 @@ class AtomSignal<T> extends SignalBaseClass<T> {
   }
 
   [atomSetter](value: T) {
+    if (this._value === value) {
+      return;
+    }
     this._value = value;
     this.notify();
   }

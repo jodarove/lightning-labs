@@ -1,4 +1,3 @@
-import { defineState } from '@lwc/state';
 import createLayoutSM from 'x/layoutSM';
 import createRecordSM from 'x/recordSM';
 import createRoutingSM from 'x/routingState';
@@ -19,16 +18,6 @@ function computeFieldsFromLayout(layout) {
     });
 
     return result;
-}
-
-function edge(signals, concequence) {
-    for (const signal of signals) {
-        signal.subscribe(() => {
-            concequence();
-        });
-    }
-
-    concequence();
 }
 
 function effect(signals, fn) {
@@ -55,55 +44,38 @@ function effect(signals, fn) {
     onChange();
 }
 
-export default defineState((atom, computed, update, fromContext, setAtom) => {
-    const routingState = createRoutingSM();
-    const pageRecord = createRecordSM();
-    const pageLayout = createLayoutSM();
-    const pageLayoutFields = createRecordSM();
+// Data providers
+export const routingState = createRoutingSM(); 
+export const pageRecord = createRecordSM();
+export const pageLayout = createLayoutSM();
+export const pageLayoutFields = createRecordSM();
 
-    effect([routingState], () => {
-        pageRecord.value.setConfig({
-            objectApiName: routingState.value.objectApiName,
-            recordId: routingState.value.recordId,
-            fields: ['Id', 'Name'],
-        });
+// I/O relationships
+effect([routingState], () => {
+    pageRecord.value.setConfig({
+        objectApiName: routingState.value.objectApiName,
+        recordId: routingState.value.recordId,
+        fields: ['Id', 'Name'],
     });
+});
 
-    effect([routingState, pageRecord], () => {
-        pageLayout.value.setConfig({
-            objectApiName: routingState.value.objectApiName,
-            recordTypeId: pageRecord.value.record?.recordTypeId,
-        });
+effect([routingState, pageRecord], () => {
+    pageLayout.value.setConfig({
+        objectApiName: routingState.value.objectApiName,
+        recordTypeId: pageRecord.value.record?.recordTypeId,
     });
+});
 
-    effect([routingState,pageLayout], () => {
-        let fields = undefined;
-        if (pageLayout.value.status === 'loaded' && pageLayout.value.layout) {
-            fields = computeFieldsFromLayout(pageLayout.value.layout);
-        }
-        pageLayoutFields.value.setConfig({
-            recordId: routingState.value.recordId,
-            objectApiName: routingState.value.objectApiName,
-            fields,
-        });
-    });
-
-    const getStates = () => {
-        return {
-            routingState,
-            pageRecord,
-            pageLayout,
-            pageLayoutFields,
-        }
+effect([routingState, pageLayout], () => {
+    // these should probably be in the layout?
+    let fields = undefined;
+    if (pageLayout.value.status === 'loaded' && pageLayout.value.layout) {
+        fields = computeFieldsFromLayout(pageLayout.value.layout);
     }
+    pageLayoutFields.value.setConfig({
+        recordId: routingState.value.recordId,
+        objectApiName: routingState.value.objectApiName,
+        fields,
+    });
+});
 
-    return (...args) => {
-        return {
-            routingState,
-            pageRecord,
-            pageLayout,
-            pageLayoutFields,
-            getStates,
-        }
-    }
-})
