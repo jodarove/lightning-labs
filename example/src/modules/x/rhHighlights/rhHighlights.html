@@ -1,0 +1,25 @@
+<template>
+    <div class="highlights-container">
+        <template if:true={hasRecord}>
+            <div class="highlight-section">
+                <h3>Record Information</h3>
+                <dl>
+                    <dt>API Name</dt>
+                    <dd>{recordData.apiName}</dd>
+                    <dt>Record ID</dt>
+                    <dd>{recordData.id}</dd>
+                    <dt>Record Type ID</dt>
+                    <dd>{recordData.recordTypeId}</dd>
+                    <dt>Name</dt>
+                    <dd>{recordData.Name}</dd>
+                </dl>
+            </div>
+        </template>
+        <template if:false={hasRecord}>
+            <div class="no-record">
+                <pre>RecordInfo status: {record.value.status}</pre>
+                highlights: No record data available
+            </div>
+        </template>
+    </div>
+</template> 

@@ -1,0 +1,22 @@
+<template>
+    <header>
+        <h1>Todos for {routingState.value.currentRoute}</h1>
+        <section>
+            <h2>Record - Hihglights</h2>
+            <!-- highlights panel -->
+            <x-rh-highlights></x-rh-highlights>
+        </section>
+    </header>
+    <main style="display: flex; flex-direction: row; gap: 20px; padding: 20px;">
+        <section style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 4px;">
+            <h2>Record - details</h2>
+            <!-- details panel -->
+            <x-rh-details></x-rh-details>
+        </section>
+        <section style="flex: 1; border: 1px solid #ccc; padding: 15px; border-radius: 4px;">
+            <h2>Record - Custom Details</h2>
+            <!-- custom details panel -->
+            <x-rh-custom-details></x-rh-custom-details>
+        </section>
+    </main>
+</template>

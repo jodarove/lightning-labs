@@ -33,6 +33,7 @@ export default class Playground extends LightningElement {
 
   hasRendered = false;
   renderedCallback() {
+    // Commenting this code so that the hydrated code can exe
     if (this.hasRendered) {
       return;
     }
